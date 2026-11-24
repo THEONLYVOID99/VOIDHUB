@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VOID HUB</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050506;--card:rgba(255,255,255,.04);--bd:rgba(255,255,255,.09);--t:#f4f4f5;--m:#8a8a93;--r:#d00018;--rg:rgba(208,0,24,.45);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(900px 500px at 50% -10%,rgba(208,0,24,.22),transparent),var(--bg);color:var(--t);font:17px/1.6 Inter,system-ui,sans-serif;min-height:100vh}
+.av{border-radius:50%;object-fit:cover;border:2px solid var(--r);box-shadow:0 0 28px var(--rg)}.about .btn{margin:4px}
+.logo{font-family:Orbitron,sans-serif;font-weight:800;letter-spacing:.18em}.logo b{color:var(--r);text-shadow:0 0 18px var(--rg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(5,5,6,.7);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+nav a{color:var(--m);text-decoration:none;margin-left:20px;font-size:14px;letter-spacing:.1em;text-transform:uppercase;transition:.25s}nav a:hover,nav a.act{color:var(--t)}nav a.act{text-shadow:0 0 12px var(--r)}nav>div{white-space:nowrap;overflow-x:auto}nav a{margin-left:14px}
+.hero{text-align:center;padding:12vh 5vw 6vh;animation:up .9s both}
+.hero .logo{font-size:clamp(44px,12vw,120px);line-height:1;text-shadow:0 0 60px var(--rg)}
+.hero h1{font:600 clamp(18px,4.2vw,34px) Orbitron;letter-spacing:.3em;margin:26px 0 8px}
+.hero p{color:var(--m);font-size:clamp(17px,2.8vw,24px)}
+@keyframes up{from{opacity:0;transform:translateY(20px)}}
+.search{max-width:560px;margin:28px auto 0;display:flex;gap:8px}
+input,textarea,select{width:100%;background:var(--card);border:1px solid var(--bd);color:var(--t);padding:13px 16px;border-radius:12px;font:inherit;outline:0;transition:.25s}
+input:focus,textarea:focus,select:focus{border-color:var(--r);box-shadow:0 0 0 3px rgba(208,0,24,.2)}
+.btn{background:var(--r);color:#fff;border:0;padding:12px 22px;border-radius:12px;font:600 15px Inter;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:.25s;box-shadow:0 0 22px var(--rg)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 34px var(--rg)}
+.btn.g{background:var(--card);box-shadow:none;border:1px solid var(--bd)}.btn.g:hover{border-color:var(--r)}
+.btn.sm{padding:8px 13px;font-size:13px}
+main{padding:0 5vw 60px;max-width:1300px;margin:auto}
+.chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px 0 34px}
+.chip{padding:10px 20px;border-radius:99px;border:1px solid var(--bd);background:var(--card);color:var(--m);cursor:pointer;font-size:15px;transition:.25s}
+.chip:hover,.chip.on{color:#fff;border-color:var(--r);box-shadow:0 0 16px var(--rg)}
+h2{font:600 19px Orbitron;letter-spacing:.2em;margin:36px 0 16px;text-transform:uppercase}h2::before{content:"";display:inline-block;width:3px;height:14px;background:var(--r);margin-right:10px;box-shadow:0 0 10px var(--r)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.vc{background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;cursor:pointer;backdrop-filter:blur(10px);transition:.3s;animation:up .5s both}
+.vc:hover{transform:translateY(-5px);border-color:rgba(208,0,24,.6);box-shadow:0 10px 40px rgba(208,0,24,.18)}
+.th{aspect-ratio:16/9;background:#111 center/cover;position:relative}
+.th video{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.7);padding:3px 9px;border-radius:6px;font-size:13px}
+.vi{padding:12px 14px}.vi b{display:block;font-weight:600;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{color:var(--m);font-size:14px;margin-top:4px}
+#ld{position:fixed;inset:0;z-index:50;background:#050506;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:opacity .6s,visibility .6s}#ld.off{opacity:0;visibility:hidden}.ldb{width:170px;height:3px;background:var(--bd);overflow:hidden;border-radius:9px}.ldb i{display:block;height:100%;width:40%;background:var(--r);box-shadow:0 0 12px var(--r);animation:ldm 1s infinite linear}@keyframes ldm{from{transform:translateX(-100%)}to{transform:translateX(260%)}}
+.tr{position:fixed;width:10px;height:10px;margin:-5px;border-radius:50%;background:var(--r);box-shadow:0 0 14px var(--r);pointer-events:none;z-index:30;animation:tf .6s forwards}@keyframes tf{to{opacity:0;transform:scale(.2)}}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--r);box-shadow:0 0 12px var(--r);z-index:20}
+nav{transition:padding .3s,background .3s}nav.sm{padding-top:8px;padding-bottom:8px;background:rgba(5,5,6,.94)}
+summary{list-style:none;display:flex;justify-content:space-between;align-items:center}summary::-webkit-details-marker{display:none}summary::after{content:"+";color:var(--r);font-size:26px;transition:transform .35s}details[open] summary::after{transform:rotate(135deg)}details[open]{border-color:rgba(208,0,24,.6);box-shadow:0 0 24px rgba(208,0,24,.15)}details{transition:.3s}details p{animation:up .45s both}
+.chip:active,.btn:active{transform:scale(.94)}.chip.on{animation:pop .4s}@keyframes pop{50%{transform:scale(1.12)}}
+.hero .av{animation:float 4s ease-in-out infinite}@keyframes float{50%{transform:translateY(-10px)}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*{animation:none!important}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}.stat{text-align:center;padding:22px 8px;background:var(--card);border:1px solid var(--bd);border-radius:16px;backdrop-filter:blur(10px)}.stat b{display:block;font:800 clamp(26px,7vw,46px) Orbitron;color:var(--r);text-shadow:0 0 20px var(--rg)}.stat span{color:var(--m);font-size:14px}
+.step{padding:22px;background:var(--card);border:1px solid var(--bd);border-radius:16px;transition:.3s}.step:hover{border-color:var(--r);transform:translateY(-4px)}.step i{font:800 28px Orbitron;color:var(--r);font-style:normal}.step h3{margin:8px 0 6px;font-size:19px}.step p{color:var(--m)}
+details{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px 18px;margin-bottom:10px}summary{cursor:pointer;font-weight:600;font-size:18px}details p{color:var(--m);margin-top:10px}
+.cta{text-align:center;padding:36px 20px;background:linear-gradient(135deg,rgba(208,0,24,.25),rgba(255,255,255,.03));border:1px solid rgba(208,0,24,.5);border-radius:20px}.cta p{color:var(--m);margin:10px 0 20px;font-size:18px}
+.empty{color:var(--m);text-align:center;padding:40px;border:1px dashed var(--bd);border-radius:16px}
+.modal{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);display:none;overflow:auto;padding:4vh 4vw}
+.modal.on{display:block}
+.box{max-width:900px;margin:auto;background:#0b0b0d;border:1px solid var(--bd);border-radius:18px;padding:18px;box-shadow:0 0 60px rgba(208,0,24,.2)}
+.box video{width:100%;border-radius:12px;background:#000;max-height:60vh}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.bar{height:6px;background:var(--bd);border-radius:9px;overflow:hidden;margin-top:12px;display:none}.bar i{display:block;height:100%;width:0;background:var(--r);box-shadow:0 0 10px var(--r)}
+.about{text-align:center;max-width:640px;margin:70px auto 0;padding:34px;background:var(--card);border:1px solid var(--bd);border-radius:20px;backdrop-filter:blur(12px)}
+.about p{color:var(--m);font-size:18px;margin:12px 0 22px}
+.admin{display:none}.admin.on{display:block}
+.form{display:grid;gap:10px;max-width:640px}
+table{width:100%;border-collapse:collapse;font-size:15px}td,th{padding:9px 6px;border-bottom:1px solid var(--bd);text-align:left}th{color:var(--m);font-weight:500}
+footer{text-align:center;color:var(--m);font-size:14px;padding:30px}
+</style></head><body>
+<div id="ld"><img class="av" style="width:110px;height:110px;animation:float 2s ease-in-out infinite" src="/_blob/c5ffd1557a08ab47a5b3eb2c7aacd9c2" alt=""><div class="logo" style="font-size:26px">VOID<b>HUB</b></div><div class="ldb"><i></i></div></div>
+<div id="prog"></div><nav><a href="#home" class="logo" style="display:flex;align-items:center;gap:10px;margin:0;color:var(--t)"><img class="av" style="width:38px;height:38px" src="/_blob/c5ffd1557a08ab47a5b3eb2c7aacd9c2" alt="">VOID<b>HUB</b></a><div><a href="#home" data-n="home">Home</a><a href="#videos" data-n="videos">Videos</a><a href="#trending" data-n="trending">Trending</a><a href="#about" data-n="about">About</a><a href="#admin" data-n="admin" id="adminLink" style="display:none">Admin</a></div></nav>
+
+<section class="hero pg" data-p="home">
+<img class="av" style="width:clamp(110px,24vw,170px);height:clamp(110px,24vw,170px);margin-bottom:22px" src="/_blob/c5ffd1557a08ab47a5b3eb2c7aacd9c2" alt="VOID HUB">
+<div class="logo">VOID<b>HUB</b></div>
+<h1>WELCOME TO THE VOID.</h1>
+<p>Scenepacks and reverse clips for Unstable SMP players. One place. Download freely.</p>
+<div class="search"><input id="q" placeholder="Search videos, tags…" aria-label="Search"></div>
+</section>
+
+<main>
+<div id="site">
+<div class="pg" data-p="home" id="feat"></div>
+<div class="pg" data-p="home" id="homeMore">
+<div class="stats"><div class="stat"><b id="stV">0</b><span>Videos</span></div><div class="stat"><b id="stD">0</b><span>Downloads</span></div><div class="stat"><b id="stC">5</b><span>Categories</span></div></div>
+<h2>Browse by category</h2>
+<div class="chips" style="justify-content:flex-start;margin-top:0"><span class="chip" data-c="Scenepacks">Scenepacks</span><span class="chip" data-c="Reverse Clips">Reverse Clips</span><span class="chip" data-c="Unstable SMP">Unstable SMP</span><span class="chip" data-c="Minecraft">Minecraft</span><span class="chip" data-c="Gaming">Gaming</span></div>
+<h2>How it works</h2>
+<div class="grid"><div class="step"><i>01</i><h3>Find your clip</h3><p>Search or browse scenepacks and reverse clips made for Unstable SMP players.</p></div><div class="step"><i>02</i><h3>Preview it</h3><p>Open any video to watch it in the player and check the resolution and file size first.</p></div><div class="step"><i>03</i><h3>Download freely</h3><p>Hit Download and the original file saves straight to your phone or PC. No account needed.</p></div></div>
+<h2>Join the community</h2>
+<div class="cta"><div class="logo" style="font-size:22px">THE VOID DISCORD</div><p>Request clips, share your edits, and get notified when new scenepacks drop.</p><a class="btn" href="https://discord.gg/xQKcAg2sk7" target="_blank" rel="noopener">Join the Discord</a></div>
+<h2>FAQ</h2>
+<details><summary>Is everything free to download?</summary><p>Yes. Every video on VOID HUB can be downloaded for free in its original quality.</p></details>
+<details><summary>What are scenepacks?</summary><p>Collections of clean clips you can drop into your own edits, made with Unstable SMP players in mind.</p></details>
+<details><summary>What are reverse clips?</summary><p>Clips played backwards so you can use the reversed footage in your own videos and transitions.</p></details>
+<details><summary>Can I request something?</summary><p>Yes. Join the Discord or message TheOnlyVoid on Instagram and ask.</p></details>
+</div>
+<div class="pg" data-p="videos"><h2>All videos</h2><p class="meta" style="margin:-6px 0 14px;font-size:16px">Every scenepack and reverse clip in one place. Search by name or tag, or filter by category below.</p><input id="q2" placeholder="Search videos, tags…" aria-label="Search"><div class="chips" id="chips" style="margin-top:16px"></div><div id="lib"></div></div>
+<div class="pg" data-p="trending" id="trend"></div>
+<section class="about pg" data-p="about" id="about">
+<img class="av" style="width:120px;height:120px;margin-bottom:14px" src="/_blob/c5ffd1557a08ab47a5b3eb2c7aacd9c2" alt="TheOnlyVoid">
+<div class="logo" style="font-size:26px">ABOUT</div>
+<p>VOID HUB is a dedicated space for Unstable SMP scenepacks, reverse clips and gaming content by TheOnlyVoid.</p>
+<p>Every clip here is made to be used. Grab a scenepack for your next edit, drop in a reverse clip for a transition, and keep your Unstable SMP content looking clean.</p>
+<p>New uploads land here first, and the community on Discord helps decide what comes next. Ask for a clip, share what you made, and stay in the loop.</p>
+<a class="btn" href="https://www.youtube.com/@Theonlyvoid-666" target="_blank" rel="noopener">Subscribe on YouTube</a>
+<a class="btn g" href="https://www.instagram.com/theonlyvoid" target="_blank" rel="noopener">Follow on Instagram</a>
+<a class="btn g" href="https://discord.gg/xQKcAg2sk7" target="_blank" rel="noopener">Join the Discord</a>
+</section>
+</div>
+
+<section class="admin" id="admin">
+<h2>Admin dashboard</h2>
+<div class="form">
+<input id="aT" placeholder="Title"><textarea id="aD" rows="3" placeholder="Description"></textarea>
+<select id="aC"></select><input id="aG" placeholder="Tags (comma separated)">
+<label class="meta">Video file (max 20 MB)</label><input id="aV" type="file" accept="video/mp4,video/webm,video/quicktime">
+<label class="meta">Thumbnail (optional)</label><input id="aI" type="file" accept="image/png,image/jpeg,image/webp">
+<label class="meta">Over 20 MB? Leave the file empty and paste an https download link (Drive, Mega, etc.). Add size and resolution below.</label><input id="aX" placeholder="https://…"><input id="aZ" placeholder="File size in MB (optional)" inputmode="decimal"><input id="aR" placeholder="Resolution, e.g. 1920×1080 (optional)">
+<label class="meta"><input type="checkbox" id="aP" checked style="width:auto"> Publish immediately · I own or have permission to distribute this video</label>
+<button class="btn" id="aS">Upload</button><div class="meta" id="aM"></div>
+</div>
+<h2>Manage</h2><div id="aL" style="overflow:auto"></div>
+<h2>Storage</h2><div class="meta" id="aSt"></div>
+</section>
+</main>
+
+<div class="modal" id="mod"><div class="box" id="box"></div></div>
+<footer>© VOID HUB · TheOnlyVoid</footer>
+
+<script>
+const CATS=["Scenepacks","Reverse Clips","Unstable SMP","Minecraft","Gaming"];
+let V=[],S={},db=null,assets=null,owner=false,cat="All",term="";
+const $=id=>document.getElementById(id);
+const E=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const u=id=>id?"/_blob/"+id:"";
+const mb=b=>(b/1048576).toFixed(1)+" MB";
+const st=id=>S[id]||{v:0,d:0};
+
+function card(v){const s=st(v.id);
+return `<div class="vc" data-id="${E(v.id)}"><div class="th" style="${v.thumb?`background-image:url(${u(v.thumb)})`:""}">${v.thumb||!v.file?"":`<video src="${u(v.file)}#t=0.5" preload="metadata" muted></video>`}<span class="tag">${E(v.res)}</span></div><div class="vi"><b>${E(v.title)}</b><div class="meta">${E(v.cat)} · ${mb(v.size)} · ${s.d} downloads</div></div></div>`}
+
+function grid(list,empty){return list.length?`<div class="grid">${list.map(card).join("")}</div>`:`<div class="empty">${empty}</div>`}
+
+function render(){
+ const pub=V.filter(v=>v.pub).sort((a,b)=>b.ts-a.ts);
+ $("chips").innerHTML=["All",...CATS].map(c=>`<span class="chip ${c===cat?"on":""}" data-c="${c}">${c}</span>`).join("");
+ const f=pub.filter(v=>(cat==="All"||v.cat===cat)&&(!term||(v.title+" "+v.tags+" "+v.desc).toLowerCase().includes(term)));
+ const top=[...pub].sort((a,b)=>st(b.id).d-st(a.id).d).slice(0,12);
+ $("feat").innerHTML=(pub[0]?`<h2>Featured</h2>${grid(pub.slice(0,1),"")}<h2>Latest</h2>${grid(pub.slice(1,9),"More coming soon.")}<div class="row" style="justify-content:center;margin-top:24px"><a class="btn g" href="#videos">View all videos</a></div>`:`<div class="empty">No videos yet. The void is waiting.</div>`);
+ $("trend").innerHTML=`<h2>Trending · most downloaded</h2>`+grid(top,"Nothing trending yet.");
+ $("stV").textContent=pub.length;$("stD").textContent=pub.reduce((a,v)=>a+st(v.id).d,0);
+ $("lib").innerHTML=grid(f,"No videos found.");
+ reveal();if(owner)adminList();
+}
+
+function open(id){const v=V.find(x=>x.id===id);if(!v)return;
+ const s=st(id);if(db)db.doc("stats/"+id).set({v:s.v+1,d:s.d}).catch(()=>{});
+ const rel=V.filter(x=>x.pub&&x.id!==id&&x.cat===v.cat).slice(0,4);
+ $("box").innerHTML=`${v.file?`<video src="${u(v.file)}" controls playsinline ${v.thumb?`poster="${u(v.thumb)}"`:""}></video>`:`<div class="th" style="border-radius:12px;${v.thumb?`background-image:url(${u(v.thumb)})`:""}"></div>`}
+ <h2 style="margin-top:18px">${E(v.title)}</h2><p class="meta">${E(v.desc)}</p>
+ <div class="meta">${E(v.res)} · ${mb(v.size)} · ${s.v+1} views · <span id="dc">${s.d}</span> downloads · ${E(v.tags)}</div>
+ <div class="row"><button class="btn" id="dl">Download</button><button class="btn g" id="cl">Close</button></div>
+ <div class="bar" id="bar"><i id="bi"></i></div>
+ ${rel.length?`<h2>Related</h2>${grid(rel,"")}`:""}`;
+ $("mod").classList.add("on");
+ $("cl").onclick=()=>$("mod").classList.remove("on");
+ $("dl").onclick=()=>download(v);
+}
+
+async function download(v){
+ if(v.ext&&/^https:\/\//.test(v.ext)){window.open(v.ext,"_blank","noopener");const s=st(v.id);if(db)db.doc("stats/"+v.id).set({v:s.v,d:s.d+1}).catch(()=>{});return}
+ const url=u(v.file),bar=$("bar"),bi=$("bi"),b=$("dl");const ext=(v.name||"video.mp4").split(".").pop();
+ const fn=v.title.replace(/[^\w\- ]/g,"").trim()+"."+ext;
+ b.disabled=true;bar.style.display="block";
+ try{
+  const r=await fetch(url),tot=+r.headers.get("content-length")||v.size,rd=r.body.getReader(),ch=[];let got=0;
+  for(;;){const{done,value}=await rd.read();if(done)break;ch.push(value);got+=value.length;bi.style.width=Math.min(100,got/tot*100)+"%"}
+  const blob=new Blob(ch,{type:v.type||"video/mp4"});
+  const dls=await claude.use("downloads");
+  if(dls)await dls.save({filename:fn,data:blob});else throw 0;
+ }catch(e){window.open(url,"_blank")}
+ b.disabled=false;bar.style.display="none";
+ const s=st(v.id);if(db)db.doc("stats/"+v.id).set({v:s.v,d:s.d+1}).catch(()=>{});
+}
+
+/* admin */
+function adminList(){
+ $("aL").innerHTML=V.length?`<table><tr><th>Title</th><th>Views</th><th>DL</th><th>Size</th><th></th></tr>${V.map(v=>`<tr><td>${E(v.title)}</td><td>${st(v.id).v}</td><td>${st(v.id).d}</td><td>${mb(v.size)}</td><td style="white-space:nowrap"><button class="btn g sm" data-a="pub" data-id="${E(v.id)}">${v.pub?"Unpublish":"Publish"}</button> <button class="btn g sm" data-a="edit" data-id="${E(v.id)}">Edit</button> <button class="btn g sm" data-a="del" data-id="${E(v.id)}">Delete</button></td></tr>`).join("")}</table>`:`<div class="empty">No uploads yet.</div>`;
+ const tot=V.reduce((a,v)=>a+v.size,0);
+ $("aSt").textContent=`${V.length} videos · ${mb(tot)} used`;
+}
+function probe(f){return new Promise(res=>{const el=document.createElement("video");el.preload="metadata";el.onloadedmetadata=()=>{res(el.videoHeight?el.videoWidth+"×"+el.videoHeight:"—");URL.revokeObjectURL(el.src)};el.onerror=()=>res("—");el.src=URL.createObjectURL(f)})}
+$("aS").onclick=async()=>{
+ const f=$("aV").files[0],t=$("aI").files[0],m=$("aM");
+ const ex=$("aX").value.trim(),big=f&&f.size>20*1048576;
+ if(!$("aT").value.trim()||(!f&&!ex))return m.textContent="Title and a video file or download link are required.";
+ if(ex&&!/^https:\/\//.test(ex))return m.textContent="Download link must start with https://";
+ if(f&&!/^video\/(mp4|webm|quicktime)$/.test(f.type))return m.textContent="Only MP4, WebM or MOV.";
+ if(big&&!ex)return m.textContent="File is over 20 MB. Paste a download link instead.";
+ if(t&&(!/^image\/(png|jpeg|webp)$/.test(t.type)||t.size>2*1048576))return m.textContent="Thumbnail must be PNG/JPG/WebP under 2 MB.";
+ if(!assets||!db)return m.textContent="Storage unavailable.";
+ try{m.textContent="Uploading…";
+  const res=f?await probe(f):($("aR").value.trim()||"—"),vf=f&&!big?await assets.upload(f):null,th=t?await assets.upload(t):null,id="v"+Date.now().toString(36);
+  await db.doc("videos/"+id).set({title:$("aT").value.trim(),desc:$("aD").value.trim(),cat:$("aC").value,tags:$("aG").value.trim(),file:vf?vf.id:"",ext:ex,thumb:th?th.id:"",size:f?f.size:Math.round((parseFloat($("aZ").value)||0)*1048576),res,name:f?f.name:"video",type:f?f.type:"",pub:$("aP").checked,ts:Date.now()});
+  m.textContent="Uploaded ✓";["aT","aD","aG","aV","aI","aX","aZ","aR"].forEach(i=>$(i).value="");
+ }catch(e){m.textContent="Failed: "+(e.message||e.code||e)}
+};
+document.addEventListener("click",async e=>{
+ const c=e.target.closest(".vc");if(c)return open(c.dataset.id);
+ const ch=e.target.closest(".chip");if(ch){cat=ch.dataset.c;if(location.hash!=="#videos")location.hash="videos";return render()}
+ if(e.target===$("mod"))$("mod").classList.remove("on");
+ const b=e.target.closest("[data-a]");if(!b||!owner)return;
+ const v=V.find(x=>x.id===b.dataset.id);
+ if(b.dataset.a==="pub")db.doc("videos/"+v.id).update({pub:!v.pub});
+ if(b.dataset.a==="edit"){const t=prompt("Title",v.title);if(t)db.doc("videos/"+v.id).update({title:t.trim(),desc:prompt("Description",v.desc)??v.desc})}
+ if(b.dataset.a==="del"&&confirm("Delete this video permanently?")){await db.doc("videos/"+v.id).delete();try{await assets.delete(v.file);if(v.thumb)await assets.delete(v.thumb)}catch(_){}}
+});
+["q","q2"].forEach(i=>$(i).oninput=e=>{term=e.target.value.toLowerCase().trim();$("q").value=$("q2").value=e.target.value;if(location.hash!=="#videos")location.hash="videos";render()});
+$("aC").innerHTML=CATS.map(c=>`<option>${c}</option>`).join("");
+
+addEventListener("load",()=>setTimeout(()=>$("ld").classList.add("off"),900));setTimeout(()=>$("ld").classList.add("off"),3000);
+if(matchMedia("(pointer:fine)").matches&&!matchMedia("(prefers-reduced-motion:reduce)").matches){let last=0;addEventListener("mousemove",e=>{const n=Date.now();if(n-last<28)return;last=n;const d=document.createElement("i");d.className="tr";d.style.left=e.clientX+"px";d.style.top=e.clientY+"px";document.body.appendChild(d);setTimeout(()=>d.remove(),600)})}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);setTimeout(()=>e.target.classList.remove("rv","in"),850)}}),{threshold:.12});
+function reveal(){document.querySelectorAll(".vc,.step,.stat,details,.cta,h2,.about").forEach(e=>{if(!e.dataset.rv){e.dataset.rv=1;e.classList.add("rv");io.observe(e)}})}
+addEventListener("scroll",()=>{const h=document.documentElement,hr=document.querySelector(".hero");$("prog").style.width=(scrollY/Math.max(1,h.scrollHeight-innerHeight)*100)+"%";document.querySelector("nav").classList.toggle("sm",scrollY>40);hr.style.transform=`translateY(${Math.min(scrollY,600)*.2}px)`;hr.style.opacity=Math.max(0,1-scrollY/650)},{passive:true});
+const PG=["home","videos","trending","about","admin"];
+function route(){let p=location.hash.slice(1);if(!PG.includes(p)||(p==="admin"&&!owner))p="home";document.querySelectorAll(".pg").forEach(e=>e.style.display=e.dataset.p===p?"":"none");$("admin").classList.toggle("on",p==="admin");$("site").style.display=p==="admin"?"none":"block";document.querySelectorAll("nav [data-n]").forEach(a=>a.classList.toggle("act",a.dataset.n===p));$("mod").classList.remove("on");scrollTo(0,0);reveal()}
+addEventListener("hashchange",route);
+
+(async()=>{
+ route();render();
+ try{const us=await claude.use("user");owner=us?(await us.isOwner()):false}catch(_){}
+ $("adminLink").style.display=owner?"":"none";route();
+ try{assets=await claude.use("assets");db=await claude.use("db")}catch(_){}
+ if(!db)return;
+ db.collection("videos").onSnapshot(s=>{V=s.docs.map(d=>({id:d.id,...d.data()}));render()},()=>{});
+ db.collection("stats").onSnapshot(s=>{S={};s.docs.forEach(d=>S[d.id]=d.data());render()},()=>{});
+})();
+</script></body></html>
